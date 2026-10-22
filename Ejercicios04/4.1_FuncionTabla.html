@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 5.2 - Tablas</title>
+</head>
+<body>
+
+<script>
+    function dibujarTabla(filas = 10, columnas = 4, color = "black") {
+
+        let tabla = document.createElement("table");
+
+        tabla.style.width = "100%";
+        tabla.style.border = "3px solid " + color;
+        tabla.style.borderCollapse = "collapse";
+        tabla.style.marginBottom = "20px";
+
+        for (let i = 0; i < filas; i++) {
+
+            let fila = document.createElement("tr");
+
+            for (let j = 0; j < columnas; j++) {
+
+                let celda = document.createElement("td");
+
+                celda.style.border = "1px solid " + color;
+                celda.style.height = "20px";
+
+                fila.appendChild(celda);
+            }
+
+            tabla.appendChild(fila);
+        }
+
+        document.body.appendChild(tabla);
+    }
+
+    dibujarTabla();
+
+    dibujarTabla(20, 10);
+
+    for (let i = 0; i < 10; i++) {
+        dibujarTabla(5, 4, "green");
+    }
+</script>
+
+</body>
+</html>
