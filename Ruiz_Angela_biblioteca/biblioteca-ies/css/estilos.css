@@ -1,0 +1,39 @@
+/* Estilos mínimos de partida. Puedes ampliarlos (requisito R8). */
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  color: #222;
+  background: #f7f7f5;
+}
+
+header {
+  background: #2f4858;
+  color: #fff;
+  padding: 1rem 2rem;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+section {
+  background: #fff;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+h2 { margin-top: 0; color: #2f4858; }
+.tabla-contenedor { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #e5e9ec; }
+th { background: #e9f0f4; }
+tr.prestado { background: #fff0ed; color: #8a3830; }
+tr:not(.prestado) { background: #f7fcf7; }
+ul, ol { line-height: 1.9; }
+.resumen-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .8rem; }
+.resumen-grid p { margin: 0; padding: 1rem; background: #edf3f5; border-radius: 6px; }
+.resumen-grid strong, .resumen-grid span { display: block; }
+.resumen-grid span { margin-top: .35rem; font-size: 1.2rem; }

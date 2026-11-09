@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca del IES</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <!-- El orden importa: app.js usa la constante LIBROS definida en datos.js -->
+  <script src="js/datos.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/pruebas.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Biblioteca del IES</h1>
+    <p>Consulta del fondo bibliográfico</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Resumen</h2>
+      <div id="resumen"></div>
+    </section>
+
+    <section>
+      <h2>Catálogo</h2>
+      <div id="catalogo"></div>
+    </section>
+
+    <section>
+      <h2>Géneros</h2>
+      <div id="generos"></div>
+    </section>
+
+    <section>
+      <h2>Los mejor valorados</h2>
+      <div id="ranking"></div>
+    </section>
+
+    <section>
+      <h2>Libros por autor</h2>
+      <div id="autores"></div>
+    </section>
+  </main>
+</body>
+</html>

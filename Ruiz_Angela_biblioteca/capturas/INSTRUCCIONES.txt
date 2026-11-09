@@ -1,0 +1,11 @@
+CAPTURAS PENDIENTES — No se incluyen imágenes falsas.
+
+A6-depurador.png: abre parteA/index.html, F12, Sources/Fuentes,
+breakpoint dentro de mediaAprobados (ejA6.js), recarga y captura
+variables i, notas[i], suma, contador y typeof suma.
+
+B-ranking-depurador.png: abre biblioteca-ies/index.html, F12,
+Sources/Fuentes, breakpoint dentro del comparador de sort en ranking
+(js/app.js), recarga y captura variables a y b con Scope/Watch.
+
+Consulta respuestas.md para más detalles.
