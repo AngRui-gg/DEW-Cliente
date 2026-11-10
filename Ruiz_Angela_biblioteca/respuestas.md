@@ -161,35 +161,14 @@ Para corregirlo, deberíamos escribir lo siguiente: return suma / contador;
 
 
 
-## Parte B — Investigación previa: carga de scripts
+## Parte B — Reto integrador: Biblioteca del IES 
 
 **1. defer y async.** Los dos permiten descargar JavaScript sin interrumpir el análisis inicial del HTML (en segundo plano). Con `defer` la ejecución espera a que se haya analizado el documento y los scripts se ejecutan en el orden del HTML. Con `async`, el script se ejecuta cuando termina su descarga: el orden de ejecución no está garantizado.
 
-**2. Sin defer.** Con el `app.js` completado, el error esperado al cargar los scripts en el `<head>` es `TypeError: Cannot set properties of null (setting 'innerHTML')`. Se produce porque `mostrar` busca `#resumen` antes de que el navegador haya creado ese elemento en el `<body>`. El texto exacto puede variar según el navegador. **Esta explicación es del comportamiento esperado; no se adjunta una captura de esa prueba.**
+**2. Sin defer.** `TypeError: Cannot set properties of null (setting 'innerHTML')`. 
+Se produce porque `mostrar` busca `#resumen` antes de que el navegador haya creado ese elemento en el `<body>`. 
 
-**3. Con `defer`, pero `app.js` antes de `datos.js`.** El error esperado es `ReferenceError: LIBROS is not defined`. `app.js` intenta utilizar `LIBROS` antes de ejecutar el archivo donde se declara; `defer` mantiene el orden de aparición. **No se adjunta una captura de esa prueba.**
+**3. app.js antes de datos.js.** `ReferenceError: LIBROS is not defined`. `app.js` intenta utilizar `LIBROS` antes de ejecutar el archivo donde se declara; `defer` mantiene el orden de aparición. 
 
-**4. ¿Por qué conviene `defer`?** La app depende del array definido en `datos.js` y de elementos del HTML. `defer` asegura que los elementos existan y que `datos.js` se ejecute antes que `app.js`. `async` no ofrece esa garantía de orden.
+**4. ¿Por qué defer es más adecuado?** La app depende del array definido en `datos.js` y de elementos del HTML. `defer` asegura que los elementos existan y que `datos.js` se ejecute antes que `app.js`. `async` no nos asegura que se vaya a seguir el orden necesario.
 
-**Fuente consultada:** MDN, elemento HTML `<script>`: https://developer.mozilla.org/es/docs/Web/HTML/Reference/Elements/script
-
-**Estado final:** `index.html` vuelve a tener `defer` en los tres scripts, en el orden `datos.js`, `app.js`, `pruebas.js`.
-
-## Parte B — Requisitos y pruebas
-
-- R1: `valoracionMedia` emplea `reduce` y devuelve `null` sin valoraciones.
-- R2: `librosDisponibles` utiliza `filter` (8 disponibles).
-- R3: `librosEntre` convierte a números y valida el rango (4 entre 1950–1960).
-- R4: `generos` usa `Set` y orden alfabético (5 géneros).
-- R5: `librosPorAutor` usa `Map` (Isaac Asimov tiene 2).
-- R6: `ranking` ordena los libros valorados sin alterar el array original (primera: Matilda, 4.8).
-- R7: `resumen` devuelve 13 libros, 5 prestados, 8 disponibles, media global y «La Celestina» como más antiguo.
-- R8: HTML de las cinco secciones mediante template literals, filas `prestado`, sin valoraciones como «Sin valorar».
-- R9: solo `let` y `const`, nombres descriptivos y cabeceras de funciones.
-- R10: `js/pruebas.js` comprueba valores y casos límite con `console.assert`; `console.table` lista disponibles.
-
-**Evidencia B:** abre `biblioteca-ies/index.html` en Chrome/Edge, F12 → **Fuentes/Sources** → `js/app.js`. Coloca el breakpoint en la línea `.sort((a, b) => valoracionMedia(b) ...`, recarga y entra en la función de comparación con «Step into» si es necesario. Captura el código detenido y las variables `a`, `b`, y sus medias en *Scope/Watch*. Guarda la captura como `capturas/B-ranking-depurador.png`.
-
-Las dos capturas deben ser auténticas de las herramientas de tu navegador; no se han fabricado imágenes del depurador. Debes añadirlas antes de entregar.
-
-**Nota:** El enunciado pide también una URL de repositorio. El ZIP no crea ni publica automáticamente un repositorio; será necesario subir estos archivos a tu cuenta y entregar su URL.

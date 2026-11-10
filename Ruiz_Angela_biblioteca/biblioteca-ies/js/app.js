@@ -130,18 +130,38 @@ function tablaLibros(libros) {
     <tbody>${filas}</tbody></table></div>`;
 }
 
-/** R8. Crea la lista de géneros. Recibe libros; devuelve HTML. */
+// R8. Lista de géneros.
+/*Llamamos a la función generos (que tenemos creada en el R4) que nos da un array con los 
+géneros sin que se repita ninguno. 
+Usamos el ".map" para recorrer el array convirtiendo cada elemento en una lista en HTML. 
+Unimos los elementos con ".join("")"*/
 function htmlGeneros(libros) {
   return `<ul>${generos(libros).map(genero => `<li>${genero}</li>`).join("")}</ul>`;
 }
 
-/** R8. Crea la lista del ranking. Recibe libros; devuelve HTML. */
+// R8. Ranking. 
+/*Llamamos a la función ranking (que tenemos creada en el R6) que nos da un array con el ranking. 
+Usamos el ".map" para recorrer el array convirtiendo cada elemento en una lista en HTML. 
+Unimos los elementos con ".join"*/
 function htmlRanking(libros) {
-  return `<ol>${ranking(libros).map(libro =>
-    `<li>${libro.titulo} — ${libro.autor} (${valoracionMedia(libro)})</li>`).join("")}</ol>`;
+
+    let mejores = ranking(libros);
+
+    let lista = mejores.map(libro =>
+        `<li>${libro.titulo} - ${libro.autor} (${valoracionMedia(libro)})</li>`
+    );
+
+    let resultado = lista.join("");
+
+    return `<ol>${resultado}</ol>`;
 }
 
-/** R8. Crea el resumen de la biblioteca. Recibe libros; devuelve HTML. */
+
+// R8. Resumen. 
+/*Llamamos a la función ranking (que tenemos creada en el R7). 
+Creamos un contenedor y le damios una calse para poder modificar el aspecto con CSS.
+Mostramos todos los datos que se guardan de un libro, pero si la valoración o el más antiguo 
+es null o undefined se escribe por pantalla lo que hay escrito después de "??"*/
 function htmlResumen(libros) {
   const datos = resumen(libros);
   return `<div class="resumen-grid">
@@ -153,14 +173,38 @@ function htmlResumen(libros) {
   </div>`;
 }
 
-/** R8. Crea la relación de libros por autor. Recibe libros; devuelve HTML. */
+// R8. Libros por autor. 
+/*Llamamos a la función ranking (que tenemos creada en el R5). 
+Convertimos el map() en un array.
+Ordenamos los autores alfabéticamente con .sort.
+Recorremos los autores y la cantidad en el bucle.
+vamos añadiendo elementos a la lista del HTML gracias al html+=
+*/
 function htmlAutores(libros) {
-  const lista = [...librosPorAutor(libros)].sort((a, b) => a[0].localeCompare(b[0], "es"));
-  return `<ul>${lista.map(([autor, cantidad]) =>
-    `<li>${autor}: ${cantidad} ${cantidad === 1 ? "libro" : "libros"}</li>`).join("")}</ul>`;
+    let autores = librosPorAutor(libros);
+    let lista = Array.from(autores);
+
+    lista.sort((a, b) => a[0].localeCompare(b[0], "es")); //a y b son los elementos a comparar. localCompare comapra los nombres alfabéticamente y "es" indica que usamos las reglas del español.
+
+    let html = "<ul>";
+
+    for (let [autor, cantidad] of lista) {
+
+        if (cantidad === 1) {
+            html += `<li>${autor}: ${cantidad} libro</li>`;
+        } else {
+            html += `<li>${autor}: ${cantidad} libros</li>`;
+        }
+
+    }
+    html += "</ul>";
+
+    return html;
 }
 
-// Programa principal: la única operación de escritura en la página es mostrar().
+
+// mostrar().
+/*Usamos el método ofrecido por el profesor para mostrar todos los métodos creados en el R8 */
 mostrar("#resumen", htmlResumen(LIBROS));
 mostrar("#catalogo", tablaLibros(LIBROS));
 mostrar("#generos", htmlGeneros(LIBROS));
