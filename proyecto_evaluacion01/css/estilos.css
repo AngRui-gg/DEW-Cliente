@@ -1,0 +1,170 @@
+/* ---------- Variables (tema 03) ---------- */
+:root {
+  --color-principal: #2c5282;
+  --color-fondo: #f4f6f8;
+  --color-texto: #222222;
+  --color-tarjeta: #ffffff;
+  --color-tarjeta-alt: #eef3f8;
+  --color-disponible: #2f855a;
+  --color-prestado: #c53030;
+}
+
+/* ---------- Base (temas 04 y 06) ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: 8rem; /* para que el header fijo no tape la sección al saltar desde el índice */
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.5;
+  color: var(--color-texto);
+  background-color: var(--color-fondo);
+}
+
+/* ---------- Cabecera sticky e índice (temas 07 y 08) ---------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0.5rem 2rem;
+  background-color: var(--color-principal);
+  color: white;
+}
+
+header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.75rem;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+/* ---------- Enlaces del índice (tema 06) ---------- */
+.enlace-indice {
+  color: white;
+  font-size: 0.875rem;
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.enlace-indice:hover,
+.enlace-indice:focus {
+  background-color: white;
+  color: var(--color-principal);
+  outline: 2px solid white;
+}
+
+/* ---------- Contenido principal (tema 04) ---------- */
+main {
+  width: 95%;
+  max-width: 70rem;
+  margin: 1.5rem auto;
+}
+
+/* ---------- Secciones: tarjetas en rejilla con flex-wrap (tema 08) ---------- */
+main section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+main section h2 {
+  width: 100%;
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--color-principal);
+}
+
+main section p {
+  width: 100%;
+  margin: 0;
+}
+
+/* ---------- Tarjeta (temas 04, 05 y 07) ---------- */
+.tarjeta {
+  position: relative; /* para colocar la etiqueta "Prestado" dentro de la tarjeta */
+  width: 30%;
+  padding: 1rem;
+  background-color: var(--color-tarjeta);
+  border: 2px solid var(--color-principal);
+  border-radius: 0.75rem;
+}
+
+.tarjeta:nth-child(even) {
+  background-color: var(--color-tarjeta-alt);
+}
+
+/* el color del borde cambia según el estado (tema 05) */
+.tarjeta.disponible {
+  border-color: var(--color-disponible);
+}
+
+.tarjeta.prestado {
+  border-color: var(--color-prestado);
+}
+
+/* ---------- Textos de la tarjeta: jerarquía de tamaños (tema 06) ---------- */
+.tarjeta-titulo {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.125rem;
+}
+
+.tarjeta-autor {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.tarjeta-dato {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* ---------- Etiqueta "Prestado" en la esquina (tema 07) ---------- */
+.etiqueta {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  color: white;
+  background-color: var(--color-prestado);
+  border-radius: 0.25rem;
+}
+
+/* ---------- Panel de estadísticas (tema 05) ---------- */
+.panel {
+  display: block; /*para no heredar el flex de main section*/
+  background-color: var(--color-tarjeta);
+  border: 2px solid var(--color-principal);
+  border-radius: 0.75rem;
+}
+
+.panel ul {
+  margin: 0.5rem 0 0 0;
+  padding-left: 1.5rem;
+}
+
+/* ---------- Pie ---------- */
+footer {
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: white;
+  background-color: var(--color-principal);
+}
+
+footer p {
+  margin: 0;
+}
